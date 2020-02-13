@@ -1,0 +1,21 @@
+Apex/sql plus notes
+------------------------------------
+connect sys as sysdba
+
+or
+
+connect SYSTEM/INSERTPASSWORD as sysdba
+alter user system identified by "[NEW PASSWORD]";
+
+where [NEW PASSWORD] is the new SYSTEM account password.  
+
+==note: sqlplus - never use @ in password
+
+
+
+Listener Pathway:
+C:\oraclexe\app\oracle\product\11.2.0\server\network
+
+set ORACLE_SID = XE
+set ORACLE_HOME=C:\oraclexe\app\oracle\product\11.2.0\server
+cd C:\oraclexe\app\oracle\product\11.2.0\server\bin

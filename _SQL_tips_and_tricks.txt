@@ -1,0 +1,75 @@
+-------------------------------------------
+--tips and tricks
+-------------------------------------------
+
+
+-------------------------------------------
+Oracle Wildcards: 
+-------------------------------------------
+e.g. LIKE('LIS-4___' will find all LIS-4000 to LIS-4999 only
+e.g. LIKE ('LIS@_' ESCAPE '@') will find 'LIS_' only
+
+-------------------------------------------
+Useful System Tables:
+-------------------------------------------
+(using USER_TABS etc. are same tables but filtered to the logged in user, ALL also has OWNER column)
+ALL_TABS 
+ALL_VIEWS (basically holds SQL definition of view)
+ALL_COL_COMMENTS
+
+-------------------------------------------
+create tables
+-------------------------------------------
+CREATE TABLE xyz_new AS SELECT * FROM xyz WHERE 1=0; (to copy structure)
+CREATE TABLE xyz_new AS SELECT * FROM xyz WHERE [something that selects rows]; (to copy structure and some data)
+CREATE TABLE xyz_new AS SELECT * FROM xyz; to copy structure and all data
+
+
+-------------------------------------------
+Import Excel Date\times into Oracle:
+-------------------------------------------
+save as .csv or format field as text, then copy dates with times into it
+both ways, make sure you put an appropriate mask into the date format field 
+(i.e. MM/DD/YYY HH24:MI)
+
+
+-------------------------------------------
+Statement that assumes a column has no null values
+-------------------------------------------
+GREATEST(NVL(col1),NVL(col2),col3) LEAST(NVL(col1),NVL(col2),col3)   
+
+
+-------------------------------------------
+--Delete multi rows
+-------------------------------------------
+
+DELETE FROM TABLE_NAME WHERE OBJECTID > 1905; 
+-------------------------------------------
+
+-------------------------------------------
+--UPDATE 
+-------------------------------------------
+UPDATE table SET column1 = value, column2 = (SELECT ...) WHERE condition;
+-------------------------------------------
+
+-------------------------------------------
+--Select Count example
+-------------------------------------------
+SELECT COUNT(COLUMN_Name) FROM TABLE_NAME WHERE OBJECTID > 1905;
+
+-------------------------------------------
+-- Select Excluding Records that are in another table example
+-------------------------------------------
+SELECT t1.somecolumn, t2.somecolumn
+FROM table_one t1, table_two t2
+WHERE t1.SOMEID = t2.SOMEID 
+MINUS
+SELECT t1.somecolumn, t2.somecolumn
+FROM table_one t1, table_two t2
+WHERE t1.SOMEID = t2.SOMEID 
+and t2.somecolumn = 'somevalue'
+
+
+
+
+

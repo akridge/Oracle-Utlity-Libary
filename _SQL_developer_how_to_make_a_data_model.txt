@@ -1,0 +1,7 @@
+1. load sql dev
+
+2. file>data model>import>data dictionary
+
+3. build using schema > tables
+
+4. then file>print>image jpg or pdf
