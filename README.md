@@ -10,4 +10,12 @@ Proedures List:
 - procedure_DELETE_ALL_APEX_USERS
 - procedure_REMOVE_INACTIVE_APEX_USER
 
+How to Docs List:
+- Oracle XE and APEX install 2020 doc
+- Oracle DAtabase backup on windows 10 doc
+- Database backup batch file with robocopy features
+- SQL plus notes
+- data model how to 
+- SQL tips and tricks
+
 
