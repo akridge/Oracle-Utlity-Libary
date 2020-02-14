@@ -18,7 +18,6 @@ select 'DROP VIEW ' || view_name || ';' stmt from user_views;
 
 ``` 
 select 'DROP TABLE ' || table_name || 'CASCADE CONSTRAINTS ' || ';' stmt from user_tables;
-
 ``` 
 
 ## Select list of tables
@@ -28,10 +27,9 @@ select * from all_tables;
 select table_name from user_tables
 
 select * from tab
-
 ``` 
 
-## Select list of columns
+## Select a list of all columns from a table
 ``` 
 SELECT column_name FROM user_tab_cols WHERE table_name=UPPER('TheTableName')
 ``` 
@@ -71,7 +69,6 @@ UPDATE table t1
 
 ``` 
 select * from session_privs;
-
 ``` 
 
 ## Select and filter Special Characters in records
@@ -160,8 +157,6 @@ BEGIN
   END LOOP;
 END;
 ``` 
-
-
 
 # Update APEX app Build Status 
 ``` 
