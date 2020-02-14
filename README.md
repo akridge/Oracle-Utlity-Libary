@@ -1,5 +1,6 @@
 # Oracle-Utlity-Libary
 Oracle SQL &amp; PL/SQL Library. Documents, install notes, tips and tricks. and more. 
+
 [Functions](https://github.com/akridge/Oracle-Utlity-Libary/tree/master/plsql_functions)
 * function _WAYPOINT_LOADER:  GPS waypoint file parcer
 * function_distance_using_grand_circle_navigation: will measure distance between two tables with lats/longs
