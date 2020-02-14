@@ -1,25 +1,32 @@
 # Oracle-Utlity-Libary
 Oracle SQL &amp; PL/SQL Library. Documents, install notes, tips and tricks. and more. 
+[Functions](https://github.com/akridge/Oracle-Utlity-Libary/tree/master/plsql_functions)
+* function _WAYPOINT_LOADER:  GPS waypoint file parcer
+* function_distance_using_grand_circle_navigation: will measure distance between two tables with lats/longs
+
+[Proedures](https://github.com/akridge/Oracle-Utlity-Libary/tree/master/plsql_procedures)
+* procedure_create_apex_users
+* procedure_DELETE_ALL_APEX_USERS
+* procedure_REMOVE_INACTIVE_APEX_USER
+
+[How to Docs](https://github.com/akridge/Oracle-Utlity-Libary/tree/master/how_to_docs)
+* Oracle XE and APEX install 2020 doc
+* Oracle database backup on windows 10 doc & backup batch file with robocopy features
+* SQL plus notes/SQL tips and tricks
+* Data Model how to
 
 # Useful SQL statements
-
-
 ## Select output that will give a list of all triggers, tables and sequences to drop:
-
 ``` 
 select 'drop trigger ' || trigger_name || ';' stmt from user_triggers;
 select 'DROP SEQUENCE ' || sequence_name || ';' stmt from user_sequences;
 select 'DROP TABLE ' || table_name || ';' stmt from user_tables;
 select 'DROP VIEW ' || view_name || ';' stmt from user_views;
-
 ``` 
-
 ## Select list of all  tables to drop w/ cascade:
-
 ``` 
 select 'DROP TABLE ' || table_name || 'CASCADE CONSTRAINTS ' || ';' stmt from user_tables;
 ``` 
-
 ## Select list of tables
 ``` 
 select * from all_tables;
@@ -172,27 +179,3 @@ begin
 end;
 ``` 
 
-
-
-
-
-
-
-
-
-Function List:
-- function _WAYPOINT_LOADER:  GPS waypoint file parcer
-- function_distance_using_grand_circle_navigation: will measure distance between two tables with lats/longs
-
-Proedures List:
-- procedure_create_apex_users
-- procedure_DELETE_ALL_APEX_USERS
-- procedure_REMOVE_INACTIVE_APEX_USER
-
-How to Docs List:
-- Oracle XE and APEX install 2020 doc
-- Oracle DAtabase backup on windows 10 doc
-- Database backup batch file with robocopy features
-- SQL plus notes
-- data model how to 
-- SQL tips and tricks
