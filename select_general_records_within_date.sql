@@ -1,7 +1,0 @@
-select * from table_name where START_TIME > TO_DATE('11-JUL-19', 'DD-MON-YY');
-
-or 
-
-CREATE_DTM >TO_DATE('2019-04-30 03:00:00', 'YYYY-MM-DD HH24:MI:SS')
-CREATE_DTM >TO_DATE('2019-07-25', 'YYYY-MM-DD')
-
