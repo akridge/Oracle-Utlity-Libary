@@ -1,23 +1,6 @@
 # Oracle-Utlity-Libary
 Oracle SQL &amp; PL/SQL Library. Documents, install notes, tips and tricks. and more. 
 
-Function List:
-- function _WAYPOINT_LOADER:  GPS waypoint file parcer
-- function_distance_using_grand_circle_navigation: will measure distance between two tables with lats/longs
-
-Proedures List:
-- procedure_create_apex_users
-- procedure_DELETE_ALL_APEX_USERS
-- procedure_REMOVE_INACTIVE_APEX_USER
-
-How to Docs List:
-- Oracle XE and APEX install 2020 doc
-- Oracle DAtabase backup on windows 10 doc
-- Database backup batch file with robocopy features
-- SQL plus notes
-- data model how to 
-- SQL tips and tricks
-
 # Useful SQL statements
 
 
@@ -70,6 +53,20 @@ CREATE_DTM >TO_DATE('2019-04-30 03:00:00', 'YYYY-MM-DD HH24:MI:SS')
 CREATE_DTM >TO_DATE('2019-07-25', 'YYYY-MM-DD')
 ``` 
 
+# Update Table
+``` 
+UPDATE table t1
+   SET (column_name) = (SELECT t2.column_name
+                         FROM table_name_two t2
+                        WHERE t1.primary_key_column_id = t2.primary_key_column_id
+                         )
+ WHERE EXISTS (
+    SELECT 1
+      FROM table_name_two t2
+     WHERE t1.primary_key_column_id = t2.primary_key_column_id
+      )
+``` 
+
 ## Select user privileges
 
 ``` 
@@ -96,3 +93,111 @@ where comments like '%,%';
 SELECT REPLACE(stringColumnName, 'thestring', '')
 FROM table_name
 ``` 
+
+## Alter User Permissions
+
+### change password
+``` 
+ALTER User INSERUSERNAME IDENTIFIED BY INSERTNEWUSERPASSWORD;
+``` 
+### GRANT PERMISSIONS
+``` 
+GRANT SELECT,INSERT,DELETE,UPDATE,CREATE SESSION ON TABLENAME TO USERNAME;
+GRANT SELECT ON TABLENAME TO USERNAME;
+
+``` 
+
+## print any table into csv
+``` 
+clear screen -- clears the output screen
+SET pagesize 300 -- every 300 rows, print the column headers
+SET sqlformat csv -- spit the results out in a comma separated values format
+cd c:\users\first.last -- change the current working directory
+spool table.csv -- capture everything that happens next to this file
+SELECT * FROM table; -- get me the employees
+spool off -- stop writing to that file
+!TYPE table.csv -- run this OS command (windows CAT of a file basically)
+``` 
+
+# Create New Schema User
+``` 
+CREATE USER [SCHEMA NAME]
+  IDENTIFIED BY "[PASSWORD]" 
+  DEFAULT TABLESPACE  [TABLESPACE] 
+  QUOTA 500M ON [TABLESPACE] ;
+``` 
+### allow user to login
+``` 
+GRANT CREATE SESSION TO [SCHEMA NAME] ;
+``` 
+### SYSTEM PRIVILEGES example
+``` 
+GRANT CREATE TABLE TO [SCHEMA NAME] ;
+GRANT CREATE SEQUENCE TO [SCHEMA NAME] ;
+GRANT CREATE TRIGGER TO [SCHEMA NAME] ;
+GRANT CREATE SYNONYM TO [SCHEMA NAME] ;
+GRANT CREATE VIEW TO [SCHEMA NAME] ;
+GRANT CREATE MATERIALIZED VIEW TO [SCHEMA NAME] ;
+GRANT ALTER SESSION TO [SCHEMA NAME] ;
+GRANT CREATE DATABASE LINK TO [SCHEMA NAME];
+GRANT CREATE PROCEDURE TO [SCHEMA NAME];
+GRANT CREATE TYPE TO [SCHEMA NAME];
+``` 
+
+
+# Grant Select Permissions on all objects loop
+``` 
+DECLARE
+  objName VARCHAR(255);
+  sqlGrant VARCHAR(255) := 'grant all on ';
+BEGIN
+  FOR i in (select object_name from user_objects where object_type = 'TABLE' OR object_type = 'VIEWS' 
+            OR object_type = 'TRIGGERS' OR object_type = 'SEQUENCES' OR object_type = 'PROCEDURES' 
+			OR object_type = 'FUNCTIONS' OR object_type = 'TRIGGERS')
+  LOOP
+    objName := i.object_name;
+    execute immediate sqlGrant || objName || ' to username';
+  END LOOP;
+END;
+``` 
+
+
+
+# Update APEX app Build Status 
+``` 
+begin
+  apex_util.set_app_build_status(APP#, 'STATUS_HERE');
+end;
+
+``` 
+Example
+``` 
+begin
+  apex_util.set_app_build_status(102, 'RUN_AND_BUILD');
+end;
+``` 
+
+
+
+
+
+
+
+
+
+Function List:
+- function _WAYPOINT_LOADER:  GPS waypoint file parcer
+- function_distance_using_grand_circle_navigation: will measure distance between two tables with lats/longs
+
+Proedures List:
+- procedure_create_apex_users
+- procedure_DELETE_ALL_APEX_USERS
+- procedure_REMOVE_INACTIVE_APEX_USER
+
+How to Docs List:
+- Oracle XE and APEX install 2020 doc
+- Oracle DAtabase backup on windows 10 doc
+- Database backup batch file with robocopy features
+- SQL plus notes
+- data model how to 
+- SQL tips and tricks
