@@ -180,3 +180,15 @@ begin
 end;
 ``` 
 
+
+# Select all APEX app page items
+``` 
+select *
+from apex_application_page_items
+where application_id = 'app_id'
+``` 
+``` 
+select *
+from apex_application_items
+where application_id = 'app_id'
+``` 
